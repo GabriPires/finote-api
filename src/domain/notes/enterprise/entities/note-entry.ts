@@ -1,7 +1,7 @@
-import { Entity } from "@/core/entities/entity";
-import { UniqueEntityId } from "@/core/entities/unique-entity-id";
-import { Optional } from "@/core/types/optional";
-import { EntryProps } from "./entry";
+import { Entity } from '@/core/entities/entity'
+import { UniqueEntityId } from '@/core/entities/unique-entity-id'
+import { Optional } from '@/core/types/optional'
+import { EntryProps } from './entry'
 
 export interface NoteEntryProps extends EntryProps {
   entryId: UniqueEntityId
@@ -14,14 +14,14 @@ export class NoteEntry extends Entity<NoteEntryProps> {
 
   static create(
     props: Optional<NoteEntryProps, 'createdAt'>,
-    id?: UniqueEntityId
+    id?: UniqueEntityId,
   ) {
     const noteEntry = new NoteEntry(
       {
         ...props,
         createdAt: props.createdAt ?? new Date(),
       },
-      id
+      id,
     )
 
     return noteEntry

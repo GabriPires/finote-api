@@ -1,5 +1,5 @@
-import { NotesRepository } from "@/domain/notes/application/repositories/notes-repository";
-import { Note } from "@/domain/notes/enterprise/entities/note";
+import { NotesRepository } from '@/domain/notes/application/repositories/notes-repository'
+import { Note } from '@/domain/notes/enterprise/entities/note'
 
 export class InMemoryNotesRepository implements NotesRepository {
   public items: Note[] = []
@@ -11,7 +11,7 @@ export class InMemoryNotesRepository implements NotesRepository {
   }
 
   async save(note: Note): Promise<void> {
-    const index = this.items.findIndex(item => item.id.equals(note.id))
+    const index = this.items.findIndex((item) => item.id.equals(note.id))
     this.items[index] = note
   }
 }

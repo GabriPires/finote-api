@@ -47,14 +47,14 @@ export class Note extends Entity<NoteProps> {
 
   static create(
     props: Optional<NoteProps, 'createdAt' | 'description'>,
-    id?: UniqueEntityId
+    id?: UniqueEntityId,
   ) {
     const note = new Note(
       {
         ...props,
-        createdAt: new Date(),
+        createdAt: props.createdAt ?? new Date(),
       },
-      id
+      id,
     )
 
     return note
