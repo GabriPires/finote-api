@@ -1,3 +1,12 @@
 {
-  "extends": ["@gabpires/eslint-config/node"]
+  "extends": [
+    "@gabpires/eslint-config/node",
+    "plugin:vitest-globals/recommended"
+  ],
+  "env": {
+    "vitest-globals/env": true
+  },
+  "rules": {
+    "no-useless-constructor": "off"
+  }
 }
