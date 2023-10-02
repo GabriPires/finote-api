@@ -1,12 +1,13 @@
-import { Entity } from "@/core/entities/entity"
-import { UniqueEntityId } from "@/core/entities/unique-entity-id"
+import { Entity } from '@/core/entities/entity'
+import { UniqueEntityId } from '@/core/entities/unique-entity-id'
+import { Optional } from '@/core/types/optional'
 
 export interface EntryProps {
   title: string
   value: number
   createdAt: Date
   updatedAt?: Date
-  creatorId: string
+  creatorId: UniqueEntityId
   type: 'income' | 'outcome'
 }
 
@@ -37,10 +38,6 @@ export class Entry extends Entity<EntryProps> {
     return this.props.updatedAt
   }
 
-  get creatorId(): string {
-    return this.props.creatorId
-  }
-
   get type(): 'income' | 'outcome' {
     return this.props.type
   }
@@ -49,16 +46,13 @@ export class Entry extends Entity<EntryProps> {
     this.props.updatedAt = new Date()
   }
 
-  static create(
-    props: EntryProps,
-    id?: UniqueEntityId
-  ) {
+  static create(props: Optional<EntryProps, 'createdAt'>, id?: UniqueEntityId) {
     const entry = new Entry(
       {
         ...props,
-        createdAt: new Date(),
+        createdAt: props.createdAt ?? new Date(),
       },
-      id
+      id,
     )
 
     return entry

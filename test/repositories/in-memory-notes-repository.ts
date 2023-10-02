@@ -4,8 +4,6 @@ import { Note } from '@/domain/notes/enterprise/entities/note'
 export class InMemoryNotesRepository implements NotesRepository {
   public items: Note[] = []
 
-  constructor() {}
-
   async create(note: Note): Promise<void> {
     this.items.push(note)
   }

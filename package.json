@@ -15,6 +15,7 @@
   "devDependencies": {
     "@gabpires/eslint-config": "^1.1.0",
     "@types/node": "^20.8.0",
+    "@vitest/coverage-v8": "^0.34.6",
     "eslint-plugin-vitest-globals": "^1.4.0",
     "typescript": "^5.2.2",
     "vite-tsconfig-paths": "^4.2.1",
