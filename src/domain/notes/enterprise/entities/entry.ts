@@ -42,6 +42,10 @@ export class Entry extends Entity<EntryProps> {
     return this.props.type
   }
 
+  get creatorId(): UniqueEntityId {
+    return this.props.creatorId
+  }
+
   private touch(): void {
     this.props.updatedAt = new Date()
   }
