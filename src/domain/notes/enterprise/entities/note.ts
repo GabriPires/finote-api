@@ -1,6 +1,7 @@
 import { Entity } from '@/core/entities/entity'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
+import { NoteEntryList } from './note-entry-list'
 
 export interface NoteProps {
   title: string
@@ -8,6 +9,7 @@ export interface NoteProps {
   createdAt: Date
   updatedAt?: Date
   creatorId: UniqueEntityId
+  entries: NoteEntryList
 }
 
 export class Note extends Entity<NoteProps> {
@@ -16,8 +18,8 @@ export class Note extends Entity<NoteProps> {
   }
 
   set title(value: string) {
-    this.touch()
     this.props.title = value
+    this.touch()
   }
 
   get description(): string | undefined {
@@ -25,8 +27,8 @@ export class Note extends Entity<NoteProps> {
   }
 
   set description(value: string) {
-    this.touch()
     this.props.description = value
+    this.touch()
   }
 
   get createdAt(): Date {
@@ -41,18 +43,28 @@ export class Note extends Entity<NoteProps> {
     return this.props.creatorId
   }
 
+  get entries(): NoteEntryList {
+    return this.props.entries
+  }
+
+  set entries(value: NoteEntryList) {
+    this.props.entries = value
+    this.touch()
+  }
+
   private touch(): void {
     this.props.updatedAt = new Date()
   }
 
   static create(
-    props: Optional<NoteProps, 'createdAt' | 'description'>,
+    props: Optional<NoteProps, 'createdAt' | 'description' | 'entries'>,
     id?: UniqueEntityId,
   ) {
     const note = new Note(
       {
         ...props,
         createdAt: props.createdAt ?? new Date(),
+        entries: props.entries ?? new NoteEntryList(),
       },
       id,
     )
