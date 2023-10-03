@@ -3,7 +3,7 @@ import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 
 export interface NoteEntryProps {
   entryId: UniqueEntityId
-  noteId: UniqueEntityId
+  creatorId: UniqueEntityId
 }
 
 export class NoteEntry extends Entity<NoteEntryProps> {
@@ -11,8 +11,8 @@ export class NoteEntry extends Entity<NoteEntryProps> {
     return this.props.entryId
   }
 
-  get noteId(): UniqueEntityId {
-    return this.props.noteId
+  get creatorId(): UniqueEntityId {
+    return this.props.creatorId
   }
 
   static create(props: NoteEntryProps, id?: UniqueEntityId) {

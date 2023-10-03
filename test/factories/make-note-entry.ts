@@ -8,7 +8,7 @@ export function makeNoteEntry(
   const noteEntry = NoteEntry.create(
     {
       entryId: new UniqueEntityId(),
-      noteId: new UniqueEntityId(),
+      creatorId: new UniqueEntityId(),
       ...override,
     },
     id,
